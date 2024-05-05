@@ -40,7 +40,7 @@ function togglePlayerVisibility(newUrl: string): void {
 
 .wrapper {
   position: absolute;
-  left: 33%;
+  left: 30%;
   top: 45%;
   font-size: 55px;
   transition: 0.3s;
