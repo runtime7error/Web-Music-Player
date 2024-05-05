@@ -64,10 +64,16 @@ function togglePlayerVisibility(newUrl: string): void {
     font-size: 18px;
     padding: 5px;
     position: absolute;
-    transform: none;
     text-align: center;
     top: 50%;
-    left: 34%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @media (max-width: 372px) {
+    .wrapper {
+      font-size: 16px;
+    }
   }
 }
 </style>
