@@ -15,7 +15,14 @@
         <span>{{ currentTimeFormatted }}</span> :
         <span>{{ durationFormatted }}</span>
       </div>
-      <audio @loadedmetadata="updateDuration" @timeupdate="updateProgress" ref="audioPlayer" controls v-if="audioUrl" style="display: none">
+      <audio
+        @loadedmetadata="updateDuration"
+        @timeupdate="updateProgress"
+        ref="audioPlayer"
+        controls
+        v-if="audioUrl"
+        style="display: none"
+      >
         <source :src="audioUrl" type="audio/mpeg" controls />
         Your browser does not support the audio element.
       </audio>
@@ -26,7 +33,9 @@
         <button id="playBtn" aria-label="Play/Pause" class="control-button" @click="playBtn">
           <span v-html="isPlaying ? '&#10074;&#10074;' : '&#9654;'"></span>
         </button>
-        <button id="forwardBtn" aria-label="Avançar" class="control-button" @click="forward">&#9654;&#9654;</button>
+        <button id="forwardBtn" aria-label="Avançar" class="control-button" @click="forward">
+          &#9654;&#9654;
+        </button>
       </div>
     </div>
   </section>
@@ -42,7 +51,7 @@ const props = defineProps({
   audioUrl: String
 })
 
-const isPlaying = ref(false);
+const isPlaying = ref(false)
 const currentTime = ref(0)
 const duration = ref(0)
 const audioPlayer = ref<HTMLAudioElement | null>(null)
@@ -50,9 +59,9 @@ const audioPlayer = ref<HTMLAudioElement | null>(null)
 const currentTimeFormatted = computed(() => formatTime(currentTime.value))
 const durationFormatted = computed(() => formatTime(duration.value))
 const progress = computed(() => {
-  if (duration.value === 0) return 0;
-  return (currentTime.value / duration.value) * 100;
-});
+  if (duration.value === 0) return 0
+  return (currentTime.value / duration.value) * 100
+})
 
 function formatTime(time: number) {
   const mins = Math.floor(time / 60)
@@ -63,17 +72,17 @@ function formatTime(time: number) {
 function togglePlay() {
   if (audioPlayer.value) {
     audioPlayer.value.play()
-    isPlaying.value = true;
+    isPlaying.value = true
   }
 }
 
 function playBtn() {
   if (audioPlayer.value?.paused) {
     audioPlayer.value.play()
-    isPlaying.value = true;
+    isPlaying.value = true
   } else {
     audioPlayer.value?.pause()
-    isPlaying.value = false;
+    isPlaying.value = false
   }
 }
 
@@ -90,13 +99,16 @@ function updateProgress() {
 }
 function forward() {
   if (audioPlayer.value) {
-    audioPlayer.value.currentTime = Math.min(audioPlayer.value.currentTime + 10, audioPlayer.value.duration);
+    audioPlayer.value.currentTime = Math.min(
+      audioPlayer.value.currentTime + 10,
+      audioPlayer.value.duration
+    )
   }
 }
 
 function rewind() {
   if (audioPlayer.value) {
-    audioPlayer.value.currentTime = Math.max(audioPlayer.value.currentTime - 10, 0);
+    audioPlayer.value.currentTime = Math.max(audioPlayer.value.currentTime - 10, 0)
   }
 }
 
@@ -186,7 +198,7 @@ h1 {
 }
 
 .progress-bar {
-  background-color:#cecccc;
+  background-color: #cecccc;
   width: 0%;
 }
 
@@ -242,5 +254,44 @@ footer a {
 
 footer a:hover {
   color: #96eaff;
+}
+
+@media (max-width: 508px) {
+  .container {
+    width: 100%;
+    position: static;
+    padding: 20px;
+    box-sizing: border-box;
+    transform: none;
+  }
+
+  h1 {
+    font-size: 20px;
+    padding-bottom: 5px;
+    letter-spacing: 2px;
+  }
+
+  .player-image {
+    height: 200px;
+    width: 200px;
+  }
+
+  .progress-container {
+    height: 5px;
+  }
+
+  .control-button {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    padding: 5px 10px;
+    margin: 5px;
+  }
+
+  footer {
+    font-size: 12px;
+    padding: 10px 0;
+    position: static;
+  }
 }
 </style>
