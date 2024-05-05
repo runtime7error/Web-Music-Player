@@ -40,14 +40,22 @@ function togglePlayerVisibility(newUrl: string): void {
 
 .wrapper {
   position: absolute;
-  left: 30%;
-  top: 45%;
-  font-size: 55px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 53px;
   transition: 0.3s;
   font-family: 'Montserrat', sans-serif;
 }
 
 .wrapper:hover {
   cursor: pointer;
+}
+
+@media (max-width: 1036px) {
+  .wrapper {
+    font-size: 24px;
+    padding: 10px;
+  }
 }
 </style>

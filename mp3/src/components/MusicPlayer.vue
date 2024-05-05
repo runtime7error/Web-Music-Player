@@ -144,17 +144,15 @@ h1 {
 }
 
 .container {
-  padding: 2rem;
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: column;
-  position: relative;
+  position: absolute;
   left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .elements {
   text-align: center;
-  padding: 0.5rem;
+  width: 100%;
 }
 
 .player-image {
